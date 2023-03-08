@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.lang.ProcessBuilder.Redirect;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,11 @@ public class EtudiantServiceImpl implements EtudiantService {
             return etudiant;
         }
         return null;
+    }
+
+    @Override
+    public List<Etudiant> getAllEtudiants() {
+        return ER.findAll();
     }
 
 }

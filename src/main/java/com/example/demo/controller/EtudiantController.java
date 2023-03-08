@@ -54,4 +54,5 @@ public class EtudiantController {
         return "etudiant";
 
     }
+
 }

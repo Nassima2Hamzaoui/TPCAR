@@ -1,7 +1,10 @@
 package com.example.demo.model;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Etudiant {
@@ -12,6 +15,9 @@ public class Etudiant {
 
     private String nom;
     private String prenom;
+
+    @OneToMany()
+    private List<Feuille> feuillesDePresence;
 
     public String getNom() {
         return nom;
