@@ -1,7 +1,9 @@
 package com.example.demo.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
@@ -16,8 +18,8 @@ public class Etudiant {
     private String nom;
     private String prenom;
 
-    @OneToMany()
-    private List<Feuille> feuillesDePresence;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "etudiant")
+    private List<Feuille> feuillesDePresence = new ArrayList<>();
 
     public String getNom() {
         return nom;
@@ -51,16 +53,23 @@ public class Etudiant {
         this.mdp = mdp;
     }
 
-    public Etudiant(String nom, String prenom, String mail, String mdp) {
-        super();
-
-        this.nom = nom;
-        this.prenom = prenom;
-        this.mail = mail;
-        this.mdp = mdp;
+    public Etudiant() {
     }
 
-    public Etudiant() {
+    public List<Feuille> getFeuillesDePresence() {
+        return feuillesDePresence;
+    }
+
+    public void setFeuillesDePresence(List<Feuille> feuillesDePresence) {
+        this.feuillesDePresence = feuillesDePresence;
+    }
+
+    public Etudiant(String mail, String mdp, String nom, String prenom, List<Feuille> feuillesDePresence) {
+        this.mail = mail;
+        this.mdp = mdp;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.feuillesDePresence = feuillesDePresence;
     }
 
 }

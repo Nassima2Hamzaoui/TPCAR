@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.model.Etudiant;
 import com.example.demo.model.Feuille;
 import com.example.demo.repository.FeuilleRepo;
 
@@ -15,22 +16,17 @@ public class feuilleServiceImpl implements feuilleService {
     private FeuilleRepo feuilleRepo;
 
     @Override
-    public Feuille ajouterFeuille(Feuille feuille) {
-        return feuilleRepo.save(feuille);
+    public void ajouterFeuille(String mois, Etudiant etudiant) {
+        Feuille feuille = new Feuille();
+        feuille.setMois(mois);// définit le mois de la feuille
+        feuille.setEtudiant(etudiant);
+        feuilleRepo.save(feuille);
+
     }
 
     @Override
-    public List<Feuille> getAllFeuilles() {
-        return feuilleRepo.findAll();
+    public List<Feuille> getAllFeuilles(Etudiant etudiant) {
+        return etudiant.getFeuillesDePresence();
     }
 
-    @Override
-    public Feuille getFeuilleDePresence(String mois) {
-        List<Feuille> feuilles = feuilleRepo.findByMois(mois);
-        if (feuilles.isEmpty()) {
-            return null;
-        } else {
-            return feuilles.get(0);
-        }
-    }
 }

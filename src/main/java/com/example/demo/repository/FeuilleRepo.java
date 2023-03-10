@@ -8,7 +8,8 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.model.Feuille;
 
 @Repository
-public interface FeuilleRepo extends JpaRepository<Feuille, String> {
+public interface FeuilleRepo extends JpaRepository<Feuille, Long> {
 
-    List<Feuille> findByMois(String mois);
+    Feuille findByMois(String mois);
+
 }
